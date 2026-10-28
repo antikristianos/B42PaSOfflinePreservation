@@ -1,0 +1,18 @@
+{
+    "IGUI_OFP_ExpandLine1":  "Expand",
+    "IGUI_OFP_ExpandLine2":  "Safehouse",
+    "IGUI_OFP_ExpandSuccess":  "Safehouse enlarged successfully.",
+    "IGUI_OFP_ExpandNoGrowth":  "No larger connected area was found. The safehouse is unchanged.",
+    "IGUI_OFP_ExpandPermission":  "Only the owner or an authorized administrator can enlarge this safehouse.",
+    "IGUI_OFP_ExpandOutside":  "Stand inside the current safehouse and try again.",
+    "IGUI_OFP_ExpandUnloaded":  "Connected rooms are not fully loaded. Move closer and try again.",
+    "IGUI_OFP_ExpandOverlap":  "The larger area would overlap another safehouse. Nothing was changed.",
+    "IGUI_OFP_ExpandBusy":  "Please wait briefly before trying again.",
+    "IGUI_OFP_ExpandWar":  "A safehouse involved in a war cannot be enlarged.",
+    "IGUI_OFP_ExpandLimit":  "The connected area is too large to process safely. Nothing was changed.",
+    "IGUI_OFP_ExpandNoStructure":  "No enclosed, roofed connected rooms were found. Nothing was changed.",
+    "IGUI_OFP_ExpandMissing":  "This safehouse has changed or no longer exists. Reopen its window.",
+    "IGUI_OFP_ExpandFailed":  "The safehouse could not be enlarged.",
+    "IGUI_OFP_ExpandTimeout":  "No confirmation arrived. Reopen the safehouse window to check its boundaries.",
+    "IGUI_OFP_ExpandTooltip":  "Recalculates the safehouse using connected enclosed, roofed rooms, including extensions to map buildings. Only a larger area is accepted; the current area is never reduced. The server confirms success or rejection. Owner or authorized administrator only; stand inside the safehouse. All connected rooms must be loaded and the new area must not overlap another safehouse. Other safehouses limit only the blocked directions; free directions can still grow."
+}

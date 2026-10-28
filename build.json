@@ -1,0 +1,469 @@
+{
+  "JavaRelease": 17,
+  "JarName": "PlayerAndSavehouseOfflinePreservation.jar",
+  "AdditionalClasspath": [],
+  "Entries": [
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Access.class",
+      "Size": 4585,
+      "Sha256": "E38D682E49022E4D2395E54A406995EA68AC0CC64825810EBC880AF0195621AF"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Bridge.class",
+      "Size": 1730,
+      "Sha256": "A12283F9F831EB89FEE702C20E2D89E5E480910DFB473DAAADB78D5CA02091A5"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/ClientItems$Entry.class",
+      "Size": 926,
+      "Sha256": "0AF3793C46565D1CC97CA494EE91F8682927B87B871C8EB28A24C54B22336DCD"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/ClientItems.class",
+      "Size": 8079,
+      "Sha256": "3E64E40E5916A8DD1B784D09A737399416E0C5A92963A2009972C89063895248"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/ClockHistory$Values.class",
+      "Size": 975,
+      "Sha256": "800ACDE86CA0D3D39D12DB45B7FBDA7A061A3B8C8CCC49D04AE2095F896C2129"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/ClockHistory.class",
+      "Size": 5729,
+      "Sha256": "13EB5A2DCAE7B07BB3EBE0CB78D3640E86B6C4C66CC7B62A40D02EC90AB1F680"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/ConditionProtection.class",
+      "Size": 2308,
+      "Sha256": "E9E756BC7AB1D75FFBF7EE62BE4CF0293DB83578F147DF39CB9D3489A2DFC65B"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/FoodAuthority$FoodRef.class",
+      "Size": 693,
+      "Sha256": "B978BF2FAAD4DA6B9EE6DE2942B804430A79FE8E7738F6F477982703FF09E1CA"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/FoodAuthority$Snapshot.class",
+      "Size": 1878,
+      "Sha256": "AF6DF400FAE350B181ED994F0DB6434155256D85E12191740EBB0A29889A9CE5"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/FoodAuthority$State.class",
+      "Size": 1151,
+      "Sha256": "3D2304B117AA615D9A615ACB53C6E106B5F6497B0B4F2C3347B1F938542A1CA9"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/FoodAuthority.class",
+      "Size": 21047,
+      "Sha256": "558B08D9F1B3C27E2518F858EDBA22C449952C4EC54C74B950475A49584049C6"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/GeneratorProtection$Location.class",
+      "Size": 827,
+      "Sha256": "5E2759BB85D3969B085C1FE30233459875B281AA6877A3C319EEBBD33951A0DD"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/GeneratorProtection.class",
+      "Size": 7963,
+      "Sha256": "24758FF67A6E2575D740F8A9EA85B7B9961B53B6A09EF813E55DEFFDB65EC3E5"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/HouseClocks$House.class",
+      "Size": 979,
+      "Sha256": "9C033D073D52D8C9DE150CEEAEFFC71C4CD3EBDA5D87BBC78117C3DC29816707"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/HouseClocks.class",
+      "Size": 7824,
+      "Sha256": "3EAAD2065F858EA70AC82B88F1CB4FA1E6259BD28AD6F784490B920879A91D7A"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Main.class",
+      "Size": 704,
+      "Sha256": "DBEADC058E3BE4E315D35F64E6767D330365AEBA170DF83D1EA9BCC1AB1BF523"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$AddHouse.class",
+      "Size": 805,
+      "Sha256": "041412BF6BBB350D5A782FA9BA407FAF6E703701ECE9CFA36BCD05A154E88646"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$AddItem.class",
+      "Size": 1262,
+      "Sha256": "77ED8736415E0D629E4E0C2E91E4CB9202C0EFCB470FDCD1DEBFB186B9DE6D8A"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$AddResident.class",
+      "Size": 808,
+      "Sha256": "7623750829ECE58F727FF1D133549E609422C64F3B551963353AA414289D5673"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$Added.class",
+      "Size": 1213,
+      "Sha256": "97720AF278292F67D4899B8D234FE67C70414D5547DEB055F251013C54F05354"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$Age.class",
+      "Size": 1730,
+      "Sha256": "44A27255F86C273A3980B07BA1F5B3B5784CDEF8C55D342EBE94856FC7EB7AAB"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$BeforeRemove.class",
+      "Size": 1394,
+      "Sha256": "AF286552E1C546FD30E91705AB47A489CF2CA90E749378CD3B4551E4DB8D9229"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$ClearContainer.class",
+      "Size": 1021,
+      "Sha256": "A32B0E2ABB8A4FD0A52F21321D67DE7426950483DA393C5C0F152893A5882F82"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$ClientAge.class",
+      "Size": 1297,
+      "Sha256": "D5302DE6035E0249F198DB18D1B6D7B0C908B03BDCA03C62274FA285A11C77CF"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$ClientAutoAge.class",
+      "Size": 1132,
+      "Sha256": "B82DC6D87A0353C9A8A823DD94D85C335541513916473F0A279CB2C725C8C829"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$ClientCopyAge.class",
+      "Size": 1294,
+      "Sha256": "25B8500CEC435B175F8AEC58DB1C1B68AFB8B19BEAF219CC9AA9C2E7730FBC29"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$ClientInheritAge.class",
+      "Size": 1310,
+      "Sha256": "897F95F47C79FC93403E923BAEB92F1F59B2CF71F31DC9D590E4433813F1A3F4"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$ClientOlderAge.class",
+      "Size": 1307,
+      "Sha256": "E6AEF5E4CA7C201B61DCBB7B8DECFAEE7A8F25F46143AFD353DD378C7C2866DF"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$ClientSetAge.class",
+      "Size": 1281,
+      "Sha256": "FEE79E4214DAF3511CE7EA6F36632374A2E124428A9247125672BF6EBAF0B0EB"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$ClientSetLast.class",
+      "Size": 1288,
+      "Sha256": "6CF5E488362F4C61C9961FC82C80F18EBCD37412226E84A17460EDCB8E4E0D5A"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$Condition.class",
+      "Size": 1217,
+      "Sha256": "7A525BB20551E03F2A9F81262A9BE62B64BB0146317971B9B6F5056AB3DF467D"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$Connect.class",
+      "Size": 1124,
+      "Sha256": "C75C1FCE43DB66C80F3ACB692335F472501BC65C9E4820960DE719C89B6DDE62"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$ContainerLoad.class",
+      "Size": 1842,
+      "Sha256": "6FF24B0C2B142C240845FCBAA98D040793CA84F168BA0B434DE9EF16FED8AEE5"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$DirectRemove.class",
+      "Size": 1207,
+      "Sha256": "FA495B707CAC059B260C89BCF8492EAFF99FC24A128B43A2E859047317268414"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$Disconnect.class",
+      "Size": 1070,
+      "Sha256": "71262BF59AE2ED241376E96094BCDFB3C6DC26829F7E1769873D498BC8945006"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$Eat.class",
+      "Size": 1202,
+      "Sha256": "EB717751E5EBD8F92C109DAB8CEC4BAA89AB5A7331113FF2FEC7A33634E9A27F"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$EmptyContainer.class",
+      "Size": 1030,
+      "Sha256": "6A84FB9276C511B50B0C78DD623F3EAB6178F9556541DF19F82302B2E1C9E1E5"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$ExpandedHouseSync.class",
+      "Size": 1242,
+      "Sha256": "5FFF4BB6F3C2D64027FE92EBA3BAB36FBDF0F320E3DB2B127ACA89D2FA16227E"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$FoodLoad.class",
+      "Size": 1194,
+      "Sha256": "4985A53A7703A340F18006E0EDB1E215E8484D6FCE8277725D1CC3CBB971E8DA"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$FoodSave.class",
+      "Size": 1198,
+      "Sha256": "3A0E4B19ABB94F2F9740605F8DB79A7DA8EBA6700E4EBD179A3FAA6879388173"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$Generator.class",
+      "Size": 1034,
+      "Sha256": "E37D42E981E6EE0D4E65D3AC9290F19663132CCF4983B6FC4EC07AAD161F771D"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$GeneratorActivation.class",
+      "Size": 1198,
+      "Sha256": "7F4BE85904FA06350AAE6748B16E75618241724F8484BD5B53A2FF7E902B5A4A"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$GeneratorAdded.class",
+      "Size": 1023,
+      "Sha256": "4DFA00D36C63DB959ACE3731A42E515BE45E6724E9827F3776E060D4974FAF3A"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$GeneratorReceive.class",
+      "Size": 1294,
+      "Sha256": "961B738F10CADC23A7625574A55D50ED83701759BBDA4F39F36978D706BCEE11"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$GeneratorRemoved.class",
+      "Size": 1029,
+      "Sha256": "5891E6DB21F675E28E9ADD60904EC4670ED2CCBB181C1C53DD68B0FA2C92932F"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$GeneratorSave.class",
+      "Size": 1224,
+      "Sha256": "7FDF55419126B746835BD621989B1671A520DED21E17CA626E63198982F13CBC"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$GeneratorUnloaded.class",
+      "Size": 1041,
+      "Sha256": "BDE792255B827555B486FBDCE3CB6D826D5A4753967D18B1D2CA716324A442B6"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$HouseBoundsH.class",
+      "Size": 1007,
+      "Sha256": "1563F0D3F60804629B81BF133CCA4637ABAEE57F16A815DB688A399838B990FE"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$HouseBoundsW.class",
+      "Size": 1007,
+      "Sha256": "591AAAB162B62C85A26FB4E67E0A4BCD46C2B4306D3F188543C7532EC61FF4EB"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$HouseBoundsX.class",
+      "Size": 1007,
+      "Sha256": "65A51F55CA4A4B1001F5D13ADC4D5BEFE80F68576FBF63FB08964D4B2BD50CE4"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$HouseBoundsY.class",
+      "Size": 1007,
+      "Sha256": "36C5BEF1BAA8A4B19522C7A572A97A10B0875E74E0B444974E10D214D23DECD4"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$Occupancy.class",
+      "Size": 1016,
+      "Sha256": "B919CC03219C4F7EDB0ADB740D7AE77DE38165C25347FCEA4057E2A21BA0A6FE"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$Owner.class",
+      "Size": 795,
+      "Sha256": "98C4E8402785D14D849C2472639B3C3CB36726EF0ACE2D58492F09C7352B6FD7"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$PlayerBuildingSquares.class",
+      "Size": 1124,
+      "Sha256": "B984D64D0FCA1C786C8D2773D2FED0109D9D66A8C29F27845A34B0686C0E4277"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$PlayerBuildings.class",
+      "Size": 833,
+      "Sha256": "954C98C259012ED7CD9DA6A5FBE4799972A665240D9AF0AD75BD8BE13651712C"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$PlayerLoad.class",
+      "Size": 1703,
+      "Sha256": "AE281757251EC1759FE23E0F67EDBEEF2E0983A6E5777CF0D8B9C2CAE58AD674"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$PlayerSave.class",
+      "Size": 1206,
+      "Sha256": "A34CE57AD2D97E9302D933DCA64C0FCF2A218213668C14D233A5229E9F9BB7AE"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$ProfileDescriptor.class",
+      "Size": 1916,
+      "Sha256": "DF478F1F9337DA17D71B8AB03BA348763CE2197752A4DD11B43D997175EDC035"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$ProfileEvents.class",
+      "Size": 1042,
+      "Sha256": "34A2788E47B9F10C28F614590564FAF4393E294B664648E89BDF2352048AFEF9"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$ProfileParse.class",
+      "Size": 1096,
+      "Sha256": "DD443737467F97C18E060011B85F2390903A62EF401810E34E6130F5792B3050"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$ProfileWrite.class",
+      "Size": 1450,
+      "Sha256": "559729A561757842605028E8D1818B3F6D612EC5149BFD25F25FB9A04A19314E"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$RemoveAllByType.class",
+      "Size": 1660,
+      "Sha256": "00509418040F33B6C9A8C301C3AFD9A25A96CC2D57940C0B85B6E3B91C67055F"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$RemoveByName.class",
+      "Size": 1755,
+      "Sha256": "C0079351068417CC610BE571E52A21145878417CB0D36275644BB0D7F72B0FC7"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$RemoveByType.class",
+      "Size": 1221,
+      "Sha256": "093DBDFA75FAB02DDD9B2C0CDEBCE828A57A79E8492F38A2D7AF802528B8880C"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$RemoveHouse.class",
+      "Size": 814,
+      "Sha256": "DB9A4070823D172839F6682809C476A8882F02463ADE00B837346ABEE2330F2D"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$RemoveItem.class",
+      "Size": 1170,
+      "Sha256": "1DBA735CF9E3B775EC0B5A16307DDB49C1000406471F5C22D89DDF1C9B892A1C"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$RemoveOne.class",
+      "Size": 1349,
+      "Sha256": "0F58EAEA4D978F07A084633A062B6F52F9DE6B31F12CEB2652C3391B50EEEC6F"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$RemoveResident.class",
+      "Size": 817,
+      "Sha256": "9211E7DAB6511448751E1CFE1DCB1178EA3EA93E64047EBFEA9FECA7535D62AA"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$ReplaceContents.class",
+      "Size": 1330,
+      "Sha256": "24ADE6E2988E2E687D95741A98EDDACBFA526E0115E65FEA4AB133AD8EB74480"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$Residents.class",
+      "Size": 805,
+      "Sha256": "BF1839620AD150CAB9884190B041A902903E11F2569CEDE3783D5D5DA4CAAC4F"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$SetContainer.class",
+      "Size": 1640,
+      "Sha256": "7155301D56C58838ABAA22BC3828B18160963AF182EB7F644ABC4D5F0BEBB70B"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$StatsClient.class",
+      "Size": 1197,
+      "Sha256": "A23560C0A375FB5059FF8E9A6BEC6E0C08DE905DF9DDE49FE834882CECB8716C"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$StatsParse.class",
+      "Size": 1190,
+      "Sha256": "1EFFD32247C83652313D3AA7CEFEDE7FFBCC25603F584D7C4533974BC1E1E474"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$StatsServer.class",
+      "Size": 1378,
+      "Sha256": "7EF1CBAA048EB3621831A6774D85607E3DCD0E1D75C41F2F6F2AEE56D2580E92"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$StatsSet.class",
+      "Size": 1360,
+      "Sha256": "DA3C567E06CA515119DA3CB57A31390C40FBE5965D6C88C0904BCE381BEA51E2"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$StatsWrite.class",
+      "Size": 1150,
+      "Sha256": "496736DD43AB9351C2C7441C649031A5327789E91A0378D6E793D22600DF6145"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$Vehicle.class",
+      "Size": 998,
+      "Sha256": "A2435C278F7B4A061B0B243F79338E233A3658CE3F2D3893D72ED52DC78C714A"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches$WorldItem.class",
+      "Size": 1767,
+      "Sha256": "BFFC013BC1E667A8F650A6009879B469CF5532EB22DB99E9175B096AB4B83BE8"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Patches.class",
+      "Size": 5788,
+      "Sha256": "AE747CC7243EDEE9FCA83335BEFB9760F5313124200C2E65E5A8E0F69574FB82"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Profiles.class",
+      "Size": 5857,
+      "Sha256": "ED5060839434BBB2B952A42EDE6C4A82892682D1EB017C93BF723E6F0E5AA1E9"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/SafehouseExpansion$Bounds.class",
+      "Size": 2165,
+      "Sha256": "0AF3B486C0865D519C59B9D2B8B698655DA0CE515157C110084D513384A9C455"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/SafehouseExpansion$Rejected.class",
+      "Size": 411,
+      "Sha256": "7FD558B02800FD5ED32956DC9FF7F94C1A7AB32FB28E66B6EE0C1A81C4CE984E"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/SafehouseExpansion$Search.class",
+      "Size": 4626,
+      "Sha256": "677AED5759C88D242B5C2614665A3089317803442A1C08A8F479DE4B0650D54D"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/SafehouseExpansion.class",
+      "Size": 13829,
+      "Sha256": "51CB66F85919B3F543ABD515D5B030FE4D0804B0579ADC9CA9B3E692E1BF5569"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/SelfBuiltSafehouses$VisualCalls$1$1.class",
+      "Size": 2182,
+      "Sha256": "B600895741121CD27960E6D0BCDD9B6C988F4F9BDC45516EC42EE48B30A3C63D"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/SelfBuiltSafehouses$VisualCalls$1.class",
+      "Size": 1676,
+      "Sha256": "18CA06ACF9EC751D51D1EFC9FCDE9A801B7E617537116ECA6FA9A664E0E49869"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/SelfBuiltSafehouses$VisualCalls.class",
+      "Size": 1825,
+      "Sha256": "3F25EC98CC21EB6F422C202242CFA020754D4B7941EAE1AE7A6846957FFBCBE7"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/SelfBuiltSafehouses.class",
+      "Size": 6776,
+      "Sha256": "4B1753466A87F519A76E4A1DFA9EE50337736964CFC0A9DDF443256C99EFCB5D"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Wire$Row.class",
+      "Size": 1740,
+      "Sha256": "A3964843D7934207A6CF72607D0BCF38467A5AE5E52015A8A67B11FCA957414D"
+    },
+    {
+      "Path": "antikristianos/offlinefoodpreservation/Wire.class",
+      "Size": 14660,
+      "Sha256": "D4939DCC6F8146368850EC9AB8504E717CFF4E224D64FB32290B5FA2CDE45EEC"
+    }
+  ],
+  "Dependencies": [
+    {
+      "Path": "projectzomboid.jar",
+      "Size": 66254409,
+      "Sha256": "90C54B84EBC160AE053CBEFE30C7713826CA4FDB4934FDE53C9EBDE0FF9892F3"
+    },
+    {
+      "Path": "ZombieBuddy.jar",
+      "Size": 12491692,
+      "Sha256": "79120880FDA051718082BD9BF0C2C2B639450AE73641FDB4631750221A57B208"
+    }
+  ]
+}

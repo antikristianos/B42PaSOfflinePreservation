@@ -1,0 +1,129 @@
+{
+  "SchemaVersion": 1,
+  "Project": "B42PaSOfflinePreservation",
+  "Repository": "antikristianos/B42PaSOfflinePreservation",
+  "Branch": "wip",
+  "Tag": "wip-1.63",
+  "ModVersion": "1.5.2",
+  "CollectionVersion": "1.63",
+  "WorkshopId": 3802764936,
+  "WorkshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3802764936",
+  "UploadManifestSha256": "2DF2A9D193786BC163CE4EA9E9B6232EE0819F421B726E8CA65CB59859AB0AD7",
+  "Artifact": {
+    "Path": "mods/B42PaSOfflinePreservation_WIP/42.22/media/java/PlayerAndSavehouseOfflinePreservation.jar",
+    "Size": 118312,
+    "Sha256": "8F46C2E34E5F2C725FBA974178F5D6D349FDACB70A7FD7CC4ECD4066C2735A71"
+  },
+  "Sources": [
+    {
+      "Path": ".gitignore",
+      "Size": 8,
+      "Sha256": "020C2606E8ED484089C2083E0BE438B9D0736BEE1558A6B76AF0D58BD23F69CF"
+    },
+    {
+      "Path": "MANIFEST.MF",
+      "Size": 158,
+      "Sha256": "8CF8C5D638249EBDB2334B039C89D1D9F9C86762C1559BE27FA830E85F0188C3"
+    },
+    {
+      "Path": "README.md",
+      "Size": 1471,
+      "Sha256": "3552BA8F14A5EEE9951D006166099EBA9F485C6455D1E5B1C417F671F2DCB9A0"
+    },
+    {
+      "Path": "build.json",
+      "Size": 18721,
+      "Sha256": "7C12F23CC9C5260A2E21F4D2A80C53A4B62E7C1943D931095BB57AF6BF29E127"
+    },
+    {
+      "Path": "build.ps1",
+      "Size": 2600,
+      "Sha256": "8389B7B0B5515387FA5D9B3989FED7C8629DA7762817C03AD266B69DE5B2B0FD"
+    },
+    {
+      "Path": "runtime/42.22/media/lua/shared/OFP/Bootstrap.lua",
+      "Size": 7730,
+      "Sha256": "B64420F3D27BF9D69D22DE58BBF6AADD9B67E67D8D27D9E992B2CAF49374CDB4"
+    },
+    {
+      "Path": "runtime/42.22/media/lua/shared/Translate/EN/IG_UI.json",
+      "Size": 1801,
+      "Sha256": "9CA37D3538CAD6E30538CAA32A68989CDDF16060CBF0526ED7C07CDCB01148E5"
+    },
+    {
+      "Path": "runtime/42.22/mod.info",
+      "Size": 1198,
+      "Sha256": "42566810C572F93CFE9FCA1D86EE67E958F73833F2B9A995ECDC1874411B9965"
+    },
+    {
+      "Path": "src/antikristianos/offlinefoodpreservation/Access.java",
+      "Size": 2154,
+      "Sha256": "3DA8AB5E2E766B5FCDEC1D0A6A237E6E9B4DB817380C85366D16FB7DEEC930AF"
+    },
+    {
+      "Path": "src/antikristianos/offlinefoodpreservation/Bridge.java",
+      "Size": 1041,
+      "Sha256": "02BAAC9934E4AC6896A8E5E3F85C77B89477DF09E51B32F5EC7F4403D7463C9B"
+    },
+    {
+      "Path": "src/antikristianos/offlinefoodpreservation/ClientItems.java",
+      "Size": 6302,
+      "Sha256": "DE0C6881036587C2B7312014D1FEA87F5A831DBE6AD359C2A664E3DD26C66BE6"
+    },
+    {
+      "Path": "src/antikristianos/offlinefoodpreservation/ClockHistory.java",
+      "Size": 5277,
+      "Sha256": "3EED14281826806E61100B200B4F7D7467449BDF24798DC0A75FBE88D2828B6A"
+    },
+    {
+      "Path": "src/antikristianos/offlinefoodpreservation/ConditionProtection.java",
+      "Size": 1607,
+      "Sha256": "F176C22EC2A83BAB7EC26E1E26B844636256323552214581E8F330EC3DB6BD10"
+    },
+    {
+      "Path": "src/antikristianos/offlinefoodpreservation/FoodAuthority.java",
+      "Size": 20097,
+      "Sha256": "8C8426A3055BA77D4C7141422E4C96CE5D970B49B320F996AAEF0DD579CCE951"
+    },
+    {
+      "Path": "src/antikristianos/offlinefoodpreservation/GeneratorProtection.java",
+      "Size": 7824,
+      "Sha256": "05E0384AECCC81857ED56FE4E3392044810B6A8DD2733A697628AD3570B61941"
+    },
+    {
+      "Path": "src/antikristianos/offlinefoodpreservation/HouseClocks.java",
+      "Size": 7034,
+      "Sha256": "A4BDB142BA7D5C822AC5F43DA5D1D1288FC684AD319BC1CF04841FBA52B6F828"
+    },
+    {
+      "Path": "src/antikristianos/offlinefoodpreservation/Main.java",
+      "Size": 361,
+      "Sha256": "A65D602E3FED646D2BB6174233D81917B47299071A89FA326FB4F92559B064CF"
+    },
+    {
+      "Path": "src/antikristianos/offlinefoodpreservation/Patches.java",
+      "Size": 21728,
+      "Sha256": "D2FB0B17F4CB8622F54C38071483FFAC2A27883D90AC9A95F5D198B1A86C3744"
+    },
+    {
+      "Path": "src/antikristianos/offlinefoodpreservation/Profiles.java",
+      "Size": 4141,
+      "Sha256": "01F3828F9197E32CCA96AC8E4D6126E441950F606D02F39CEC496B9ED85E7870"
+    },
+    {
+      "Path": "src/antikristianos/offlinefoodpreservation/SafehouseExpansion.java",
+      "Size": 15786,
+      "Sha256": "10D5AFBB1C1EF3975AE16E8FD6D1604B9BB2D7F6FE12F4816805D4270657E07C"
+    },
+    {
+      "Path": "src/antikristianos/offlinefoodpreservation/SelfBuiltSafehouses.java",
+      "Size": 9143,
+      "Sha256": "8A92559FB3AD3166EC8A8BB73AAFC34E7DA23F34E12D3D4B59A10ACF6E5138B5"
+    },
+    {
+      "Path": "src/antikristianos/offlinefoodpreservation/Wire.java",
+      "Size": 13290,
+      "Sha256": "717E752471A3D6AE5ADC85AC0A6A1E95C7263CE00014DDA32EE1079F67C86CEB"
+    }
+  ]
+}
