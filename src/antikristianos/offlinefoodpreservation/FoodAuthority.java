@@ -21,7 +21,7 @@ import zombie.vehicles.BaseVehicle;
 
 /** All policy and elapsed-time computation lives here on the server. */
 public final class FoodAuthority {
-    public static final String VERSION="1.5.2", KEY="OfflineFoodPreservation", STAMP="OFP2";
+    public static final String VERSION="1.6", KEY="OfflineFoodPreservation", STAMP="OFP2";
     public static final int PROTOCOL=3;
     public static final float AGE_STEP=1f/60f, PUBLISH_STEP=5f/60f;
     static final HouseClocks houses=new HouseClocks();

@@ -10,8 +10,8 @@
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/Bridge.class",
-      "Size": 1730,
-      "Sha256": "A12283F9F831EB89FEE702C20E2D89E5E480910DFB473DAAADB78D5CA02091A5"
+      "Size": 1728,
+      "Sha256": "61110976F3B7272DD1046FD011B62645620338F7685C453DE75D5B9FEB403066"
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/ClientItems$Entry.class",
@@ -55,8 +55,8 @@
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/FoodAuthority.class",
-      "Size": 21047,
-      "Sha256": "558B08D9F1B3C27E2518F858EDBA22C449952C4EC54C74B950475A49584049C6"
+      "Size": 21043,
+      "Sha256": "80A178F1EF619BE592CF088C807708E348CF513D0FC44E06C4DDC05327B8DCE6"
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/GeneratorProtection$Location.class",
@@ -80,8 +80,8 @@
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/Main.class",
-      "Size": 704,
-      "Sha256": "DBEADC058E3BE4E315D35F64E6767D330365AEBA170DF83D1EA9BCC1AB1BF523"
+      "Size": 702,
+      "Sha256": "6A2AB683D55735D3C37A078E9DBD44430D4AB107F5210AD0098FC40B343C97D8"
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/Patches$AddHouse.class",

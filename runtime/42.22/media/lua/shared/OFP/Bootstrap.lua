@@ -1,8 +1,8 @@
 -- Lua binds lifecycle, server commands and the native safehouse window. Policy remains server-owned.
 OFP = OFP or {}
 local function native()
-    if not OFP.Native or OFP.Native.version() ~= "1.5.2" then
-        error("PlayerAndSavehouseOfflinePreservation 1.5.2: matching Java component required; activate ZombieBuddy and restart.")
+    if not OFP.Native or OFP.Native.version() ~= "1.6" then
+        error("PlayerAndSavehouseOfflinePreservation 1.6: matching Java component required; activate ZombieBuddy and restart.")
     end
     return OFP.Native
 end

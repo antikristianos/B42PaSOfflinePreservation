@@ -2,7 +2,7 @@
 
 Maintained by Antikristianos. Developed with ChatGPT / Codex assistance.
 
-Source for package `B42PaSOfflinePreservation_WIP`, game slice `42.22`, mod version `1.5.2`. Java 17 bytecode; use JDK 25 to read the game's dependencies.
+Source for package `B42PaSOfflinePreservation_WIP`, game slice `42.22`, mod version `1.6`. Java 17 bytecode; use JDK 25 to read the game's dependencies.
 
 This repository contains the Java files used by this artifact, its embedded data, and the associated runtime scripts. It excludes internal planning, reports, credentials, compiled mods and third-party dependencies.
 

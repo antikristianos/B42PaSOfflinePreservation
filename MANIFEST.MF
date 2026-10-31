@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
 Implementation-Title: Player And Savehouse Offline Preservation
-Implementation-Version: 1.5.2
+Implementation-Version: 1.6
 Created-By: 25 (Oracle Corporation)
 

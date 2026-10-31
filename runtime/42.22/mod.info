@@ -1,7 +1,7 @@
 name=[B42] MP Player and Savehouse Offline Preservation (WIP)
 id=B42PaSOfflinePreservation_WIP
 author=Antikristianos
-modversion=1.5.2
+modversion=1.6
 versionMin=42.22.0
 icon=../common/icon.png
 description=Supports normal Vanilla self-built safehouse claims and manual expansion of connected buildings and extensions on multiplayer servers. Preserves saved food freshness in player inventories and carried bags across offline time at login; active inventories retain native aging and temperature updates. Safehouse storage retains server-owned food aging, item condition protection and automatic safehouse generator shutdown and restart. Generator ownership requires placement inside the actual safehouse claim (Vanilla: building rectangle plus 2 tiles on each side); power range and neighboring properties do not count. Offline generator start attempts, including PSR backup starts, are blocked. PSR battery wear and charge remain under PSR control. Requires matching ZombieBuddy Java components on server and clients.
