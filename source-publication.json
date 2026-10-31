@@ -3,16 +3,16 @@
   "Project": "B42PaSOfflinePreservation",
   "Repository": "antikristianos/B42PaSOfflinePreservation",
   "Branch": "main",
-  "Tag": "v1.5",
-  "ModVersion": "1.5",
+  "Tag": "v1.6",
+  "ModVersion": "1.6",
   "CollectionVersion": null,
   "WorkshopId": 3800645990,
   "WorkshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3800645990",
-  "UploadManifestSha256": "D9ED6DB0D0A482611F24E9F786E0F6BBF2CF3A76ACC6D13BF371B72E20483592",
+  "UploadManifestSha256": "FB02803CC752FBA9D25BEE59496B8DFE0420E97CFBD7EA5F371184EEA5D1ADCE",
   "Artifact": {
-    "Path": "mods/B42PaSOfflinePreservation/42.20/media/java/PlayerAndSavehouseOfflinePreservation.jar",
-    "Size": 119946,
-    "Sha256": "3B1B5B09A2F3623456E46435E4A5DDF02DEF9052A9153C1E3C7982F0CA25B8B6"
+    "Path": "mods/B42PaSOfflinePreservation/42.22/media/java/PlayerAndSavehouseOfflinePreservation.jar",
+    "Size": 118304,
+    "Sha256": "05B42C7063FA18C3B8AD1C8503CEFC9946671AEB60D56898789A0A94937A9FFC"
   },
   "Sources": [
     {
@@ -23,17 +23,17 @@
     {
       "Path": "MANIFEST.MF",
       "Size": 156,
-      "Sha256": "78AA14B20C22E3F0B15BDBB35025A3AF4ED54B9DC6707C16282ABFEA5B8E8562"
+      "Sha256": "DCE097E439EBE0E3F6237DC087792DBB948277D9BA1A69AFDF10708FCDF28433"
     },
     {
       "Path": "README.md",
-      "Size": 1288,
-      "Sha256": "322C7DAB42F83F80478E9D85AEE87A4494C61C99226F860919A8F980D65BFF23"
+      "Size": 1465,
+      "Sha256": "F8057752CDA37A1D7768CDC02F7B979AC2357E7691E374F8EBF312A0A4775613"
     },
     {
       "Path": "build.json",
-      "Size": 19129,
-      "Sha256": "1E86F55CB7C2387EAB35B9622E80FBE8F68E1F0FA0CD6543B9734D1BE70DDA54"
+      "Size": 18721,
+      "Sha256": "61F152AD85E3CA6F19BB1239674D57BB8E52469DC97687408E5CCE63C5DA84D1"
     },
     {
       "Path": "build.ps1",
@@ -41,19 +41,19 @@
       "Sha256": "8389B7B0B5515387FA5D9B3989FED7C8629DA7762817C03AD266B69DE5B2B0FD"
     },
     {
-      "Path": "runtime/42.20/media/lua/shared/OFP/Bootstrap.lua",
+      "Path": "runtime/42.22/media/lua/shared/OFP/Bootstrap.lua",
       "Size": 7726,
-      "Sha256": "075891A80F3BCA1D9333BDAC5C6D5257E4440A88DD7D84188B368300EDE0515F"
+      "Sha256": "D5E313637C1EAD4518EB87491B05D7DD89C2528A4C8675CE5BFF35837C31E842"
     },
     {
-      "Path": "runtime/42.20/media/lua/shared/Translate/EN/IG_UI.json",
+      "Path": "runtime/42.22/media/lua/shared/Translate/EN/IG_UI.json",
       "Size": 1801,
       "Sha256": "9CA37D3538CAD6E30538CAA32A68989CDDF16060CBF0526ED7C07CDCB01148E5"
     },
     {
-      "Path": "runtime/42.20/mod.info",
-      "Size": 1101,
-      "Sha256": "303E85AB8476B293AE5AF2CDB61D0769210428DCEEEE682ADEA8D700E367AFDD"
+      "Path": "runtime/42.22/mod.info",
+      "Size": 1218,
+      "Sha256": "3DC2A2B3FED2DEEC6944CABF36CD59DDF0EEBBBCE1057434B2A5FFA2C4FB5257"
     },
     {
       "Path": "src/antikristianos/offlinefoodpreservation/Access.java",
@@ -67,8 +67,8 @@
     },
     {
       "Path": "src/antikristianos/offlinefoodpreservation/ClientItems.java",
-      "Size": 5939,
-      "Sha256": "BDC0C7F305A8C36B946133D868792631A0B99F83A6A6D4FDBD1C41EB709C7C01"
+      "Size": 6302,
+      "Sha256": "DE0C6881036587C2B7312014D1FEA87F5A831DBE6AD359C2A664E3DD26C66BE6"
     },
     {
       "Path": "src/antikristianos/offlinefoodpreservation/ClockHistory.java",
@@ -82,8 +82,8 @@
     },
     {
       "Path": "src/antikristianos/offlinefoodpreservation/FoodAuthority.java",
-      "Size": 19891,
-      "Sha256": "3106F7B92C5BA5E6006325156E51012D2684541B2436786EE50D3DCAFEF65951"
+      "Size": 20095,
+      "Sha256": "B8D033CB9B9AE8356D8BE74199A00F371D2B38EEB45A0CDB4AC7185A84734FB3"
     },
     {
       "Path": "src/antikristianos/offlinefoodpreservation/GeneratorProtection.java",
@@ -102,13 +102,13 @@
     },
     {
       "Path": "src/antikristianos/offlinefoodpreservation/Patches.java",
-      "Size": 22113,
-      "Sha256": "A5A3D597D7B19716F894DDAA2E4D1E432FFF3EA1F39E3D067D820FF50360D8F5"
+      "Size": 21728,
+      "Sha256": "D2FB0B17F4CB8622F54C38071483FFAC2A27883D90AC9A95F5D198B1A86C3744"
     },
     {
       "Path": "src/antikristianos/offlinefoodpreservation/Profiles.java",
-      "Size": 4138,
-      "Sha256": "0CB7071A06630430065CDDC25A0D752F761F7F44C1A423565A5D0CDFB408F8FA"
+      "Size": 4141,
+      "Sha256": "01F3828F9197E32CCA96AC8E4D6126E441950F606D02F39CEC496B9ED85E7870"
     },
     {
       "Path": "src/antikristianos/offlinefoodpreservation/SafehouseExpansion.java",
@@ -122,8 +122,8 @@
     },
     {
       "Path": "src/antikristianos/offlinefoodpreservation/Wire.java",
-      "Size": 12921,
-      "Sha256": "F436E49132F387D1CA6F214F5F708C25F604EDFF0CBD40FABE9AE521749DFF54"
+      "Size": 13290,
+      "Sha256": "717E752471A3D6AE5ADC85AC0A6A1E95C7263CE00014DDA32EE1079F67C86CEB"
     }
   ]
 }

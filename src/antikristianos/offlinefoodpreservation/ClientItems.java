@@ -54,6 +54,7 @@ public final class ClientItems {
         while(entries.size()>LIMIT){int old=entries.keySet().iterator().next();entries.remove(old);pending.remove(old);}
     }
     static void register(Food food) {
+        if(FoodAuthority.personal(food)){discard(food);return;}
         clean();FoodAuthority.Snapshot row=latest(food.getID(),food);Entry e=entries.get(food.getID());
         if(e==null||e.get()!=food||e.row!=row)put(food.getID(),food,row);
     }
@@ -62,11 +63,13 @@ public final class ClientItems {
         return f!=null&&f.getID()==id&&FoodAuthority.root(f.getContainer())==FoodAuthority.root(root)?f:null;
     }
     static void receive(int id,FoodAuthority.Snapshot row,Food food) {
+        if(food!=null&&FoodAuthority.personal(food)){discard(food);return;}
         if(!FoodAuthority.client()||!row.valid()||row.epoch()!=FoodAuthority.epoch)return;
         clean();row=newer(row,latest(id,food));put(id,food,row);
         if(food!=null)FoodAuthority.apply(food,row);
     }
     static void applyPending(Food food) {
+        if(FoodAuthority.personal(food)){discard(food);return;}
         FoodAuthority.Snapshot row=latest(food.getID(),food);
         if(row!=null)FoodAuthority.apply(food,row);
     }
@@ -77,6 +80,7 @@ public final class ClientItems {
             entries.remove(e.id);pending.remove(e.id);
         }
     }
+    static void discard(Food food){entries.remove(food.getID());pending.remove(food.getID());}
     public static void forgetItem(InventoryItem item) {
         if(!FoodAuthority.client()||item==null)return;
         clean();if(item instanceof Food food)forget(food);
@@ -95,6 +99,7 @@ public final class ClientItems {
         if(FoodAuthority.client()){clean();FoodAuthority.walk(container,ClientItems::forget);}
     }
     static void moved(Food food) {
+        if(FoodAuthority.personal(food)){discard(food);return;}
         clean();applyPending(food);
         // Leaving a carried inventory drops its indexed data immediately. A later world packet
         // may establish a new, bounded observation; its existing OFP2 stamp retains the revision without a separate cache.

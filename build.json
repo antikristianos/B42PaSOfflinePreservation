@@ -11,7 +11,7 @@
     {
       "Path": "antikristianos/offlinefoodpreservation/Bridge.class",
       "Size": 1728,
-      "Sha256": "654F60E0AF8B7F5772AD9EEE98741D9039EFE6A3A6A1984CB3D1291E1A770AF6"
+      "Sha256": "61110976F3B7272DD1046FD011B62645620338F7685C453DE75D5B9FEB403066"
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/ClientItems$Entry.class",
@@ -20,8 +20,8 @@
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/ClientItems.class",
-      "Size": 7861,
-      "Sha256": "588D0C417E2512066E126D0C190A88A98E4E00391624A8DA3A9C669C777429A0"
+      "Size": 8079,
+      "Sha256": "3E64E40E5916A8DD1B784D09A737399416E0C5A92963A2009972C89063895248"
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/ClockHistory$Values.class",
@@ -39,29 +39,24 @@
       "Sha256": "E9E756BC7AB1D75FFBF7EE62BE4CF0293DB83578F147DF39CB9D3489A2DFC65B"
     },
     {
-      "Path": "antikristianos/offlinefoodpreservation/FoodAuthority$Due.class",
-      "Size": 692,
-      "Sha256": "B0C73D5A60592C50F416897806C68816AE167555B124C22E4C075CA6EC10DE05"
-    },
-    {
       "Path": "antikristianos/offlinefoodpreservation/FoodAuthority$FoodRef.class",
       "Size": 693,
-      "Sha256": "61839BC1D92DF0DC4DD1E437A81AAB588297D0FE46C1EFAB42A8A26F10E9903C"
+      "Sha256": "B978BF2FAAD4DA6B9EE6DE2942B804430A79FE8E7738F6F477982703FF09E1CA"
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/FoodAuthority$Snapshot.class",
       "Size": 1878,
-      "Sha256": "A562BC0D97E19D784A31C6C7360B4D66C5E40952E73FD42D68B59F05BCECA2DC"
+      "Sha256": "AF6DF400FAE350B181ED994F0DB6434155256D85E12191740EBB0A29889A9CE5"
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/FoodAuthority$State.class",
-      "Size": 1197,
-      "Sha256": "A22E2C594061EB2336B4C71557F82827A0F240FA78579F4C68AADBFF09708FFE"
+      "Size": 1151,
+      "Sha256": "3D2304B117AA615D9A615ACB53C6E106B5F6497B0B4F2C3347B1F938542A1CA9"
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/FoodAuthority.class",
-      "Size": 22176,
-      "Sha256": "46F774D8BF2D99DBB2D4387DE870B02F58E254F60A0D2BC26BDFD91FE438F76E"
+      "Size": 21043,
+      "Sha256": "80A178F1EF619BE592CF088C807708E348CF513D0FC44E06C4DDC05327B8DCE6"
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/GeneratorProtection$Location.class",
@@ -86,7 +81,7 @@
     {
       "Path": "antikristianos/offlinefoodpreservation/Main.class",
       "Size": 702,
-      "Sha256": "4B1758AE6AD55562844624B3446A607D416DFC901DFD420F783C86E9485328E7"
+      "Sha256": "6A2AB683D55735D3C37A078E9DBD44430D4AB107F5210AD0098FC40B343C97D8"
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/Patches$AddHouse.class",
@@ -110,8 +105,8 @@
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/Patches$Age.class",
-      "Size": 1664,
-      "Sha256": "05D0C8523FB4F8E36C50C8213AAB31F9B2699368729C0D72E2F74B27C3E1743A"
+      "Size": 1730,
+      "Sha256": "44A27255F86C273A3980B07BA1F5B3B5784CDEF8C55D342EBE94856FC7EB7AAB"
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/Patches$BeforeRemove.class",
@@ -125,43 +120,38 @@
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/Patches$ClientAge.class",
-      "Size": 1230,
-      "Sha256": "CD1CC5D7071104279CA3AB971511EA6EE18BB72D0ECD984FED5AAEDD0CA5DDEC"
+      "Size": 1297,
+      "Sha256": "D5302DE6035E0249F198DB18D1B6D7B0C908B03BDCA03C62274FA285A11C77CF"
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/Patches$ClientAutoAge.class",
-      "Size": 850,
-      "Sha256": "E217107DE2270D4FAB04AE217AC46C379D8277A815F4684A7C408260A55E4BB5"
+      "Size": 1132,
+      "Sha256": "B82DC6D87A0353C9A8A823DD94D85C335541513916473F0A279CB2C725C8C829"
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/Patches$ClientCopyAge.class",
-      "Size": 1062,
-      "Sha256": "80A2FB82767C2BA10738E6935793C0EDA6811D61A2D34F26A75F259181B6CB0F"
+      "Size": 1294,
+      "Sha256": "25B8500CEC435B175F8AEC58DB1C1B68AFB8B19BEAF219CC9AA9C2E7730FBC29"
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/Patches$ClientInheritAge.class",
-      "Size": 1078,
-      "Sha256": "22C841AC156D6D75F6495107B99D24ED4AC626BB313CF4CC8DB2D6121249F99A"
+      "Size": 1310,
+      "Sha256": "897F95F47C79FC93403E923BAEB92F1F59B2CF71F31DC9D590E4433813F1A3F4"
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/Patches$ClientOlderAge.class",
-      "Size": 1075,
-      "Sha256": "38B8C63FCF1F35ADAD20FCA20927BDAE7D81A5CD3AE8DC4D1545630D3EE0172E"
-    },
-    {
-      "Path": "antikristianos/offlinefoodpreservation/Patches$ClientProfileSave.class",
-      "Size": 1720,
-      "Sha256": "F6F4D79BFF2BD5417B40982EB969F9AC6440E95D9239CE0F2C96ACFA64C49687"
+      "Size": 1307,
+      "Sha256": "E6AEF5E4CA7C201B61DCBB7B8DECFAEE7A8F25F46143AFD353DD378C7C2866DF"
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/Patches$ClientSetAge.class",
-      "Size": 1248,
-      "Sha256": "036CDEE8CB3103D636A1B504B7A08EDC463EB8EC9B2C346F0D64935B772AD036"
+      "Size": 1281,
+      "Sha256": "FEE79E4214DAF3511CE7EA6F36632374A2E124428A9247125672BF6EBAF0B0EB"
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/Patches$ClientSetLast.class",
-      "Size": 1255,
-      "Sha256": "CAED190A1665BB6B91ADF2ADD3B7A7E4215014B51E85AA6B8E2258DA27BB5E55"
+      "Size": 1288,
+      "Sha256": "6CF5E488362F4C61C9961FC82C80F18EBCD37412226E84A17460EDCB8E4E0D5A"
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/Patches$Condition.class",
@@ -190,8 +180,8 @@
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/Patches$Eat.class",
-      "Size": 1136,
-      "Sha256": "7C22968BF16AC94714539886326BFC4277EED46CA8AD81660C3383CBF87FA42D"
+      "Size": 1202,
+      "Sha256": "EB717751E5EBD8F92C109DAB8CEC4BAA89AB5A7331113FF2FEC7A33634E9A27F"
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/Patches$EmptyContainer.class",
@@ -230,8 +220,8 @@
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/Patches$GeneratorReceive.class",
-      "Size": 1249,
-      "Sha256": "04D17CECA9D5CF20B2A636FE84D5553C3282A4574B86F058A4EB73A564A6093D"
+      "Size": 1294,
+      "Sha256": "961B738F10CADC23A7625574A55D50ED83701759BBDA4F39F36978D706BCEE11"
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/Patches$GeneratorRemoved.class",
@@ -301,12 +291,12 @@
     {
       "Path": "antikristianos/offlinefoodpreservation/Patches$ProfileDescriptor.class",
       "Size": 1916,
-      "Sha256": "FB9F656DD64BE4377E34B5E65CD314216304B719F303072B14A814EDBE740914"
+      "Sha256": "DF478F1F9337DA17D71B8AB03BA348763CE2197752A4DD11B43D997175EDC035"
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/Patches$ProfileEvents.class",
       "Size": 1042,
-      "Sha256": "8D214F7DFA4490DBF7A04359D8DD34251DED44D74B88479B05C705049FA3AE41"
+      "Sha256": "34A2788E47B9F10C28F614590564FAF4393E294B664648E89BDF2352048AFEF9"
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/Patches$ProfileParse.class",
@@ -405,13 +395,13 @@
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/Patches.class",
-      "Size": 5888,
-      "Sha256": "05341F4E67C4D8EAB9989433FB7B672451E69A67B1D273CFE92BE6AFD7FDF40E"
+      "Size": 5788,
+      "Sha256": "AE747CC7243EDEE9FCA83335BEFB9760F5313124200C2E65E5A8E0F69574FB82"
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/Profiles.class",
       "Size": 5857,
-      "Sha256": "7E365ECA230C99B731273553D6360877B5C0225E8FF6F3A6958873EFDE15166A"
+      "Sha256": "ED5060839434BBB2B952A42EDE6C4A82892682D1EB017C93BF723E6F0E5AA1E9"
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/SafehouseExpansion$Bounds.class",
@@ -460,20 +450,20 @@
     },
     {
       "Path": "antikristianos/offlinefoodpreservation/Wire.class",
-      "Size": 14715,
-      "Sha256": "51E018AD324A820B76FA5CC87FB16F3B40F5EA7649B1F506A3F29746DC16ACFD"
+      "Size": 14660,
+      "Sha256": "D4939DCC6F8146368850EC9AB8504E717CFF4E224D64FB32290B5FA2CDE45EEC"
     }
   ],
   "Dependencies": [
     {
       "Path": "projectzomboid.jar",
-      "Size": 65682033,
-      "Sha256": "E1A69EB743EDE60B213A0FE7F8B83D4FCAB773036D256CC4543A336F3B058A33"
+      "Size": 66254409,
+      "Sha256": "90C54B84EBC160AE053CBEFE30C7713826CA4FDB4934FDE53C9EBDE0FF9892F3"
     },
     {
       "Path": "ZombieBuddy.jar",
-      "Size": 12491692,
-      "Sha256": "79120880FDA051718082BD9BF0C2C2B639450AE73641FDB4631750221A57B208"
+      "Size": 12491689,
+      "Sha256": "F2490E1B72F12CFAE7EB7ADC3DCEA08F20F12AD8DDA4FB8C824631408DE3C180"
     }
   ]
 }

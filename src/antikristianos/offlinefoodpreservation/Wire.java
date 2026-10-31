@@ -39,7 +39,7 @@ public final class Wire {
     }
     public static void setData(Object packet,Object[] values){
         payloads.remove(packet);
-        if(values.length!=2||!(values[1] instanceof Food food))return;
+        if(values.length!=2||!(values[1] instanceof Food food)||FoodAuthority.personal(food))return;
         if(FoodAuthority.server()){
             FoodAuthority.settle(food);
             List<Row> batch=sending.get();payloads.put(packet,batch==null?List.of(new Row(food.getID(),FoodAuthority.snapshot(food))):batch);
@@ -51,7 +51,7 @@ public final class Wire {
         // Forwarded client packets must obtain their age from the server object.
         if(FoodAuthority.server()&&(rows==null||rows.isEmpty())){
             Food f=find(container(packet),(int)Access.get(packet,"id"));
-            if(f!=null){FoodAuthority.settle(f);rows=List.of(new Row(f.getID(),FoodAuthority.snapshot(f)));}
+            if(f!=null&&!FoodAuthority.personal(f)){FoodAuthority.settle(f);rows=List.of(new Row(f.getID(),FoodAuthority.snapshot(f)));}
         }
         writeRows(b,rows==null?List.of():rows);
     }
@@ -99,6 +99,21 @@ public final class Wire {
         ItemContainer container=container(packet);int id=(int)Access.get(packet,"id");
         InventoryItem item=foodPacket(packet)?find(container,id):container==null?null:container.getItemWithIDRecursiv(id);
         if(item==null)return foodPacket(packet);
+        if(FoodAuthority.personal(item)){
+            // User-approved boundary: condition correction for OFFLINE owners only.
+            IsoPlayer owner=(IsoPlayer)FoodAuthority.root(container).getParent();
+            boolean online=GameServer.IDToPlayerMap.get(owner.getOnlineID())==owner;
+            boolean corrected=false;
+            if(!online){
+                corrected=ConditionProtection.reject(item,(int)Access.get(packet,"condition"));
+                if(corrected)Access.set(packet,"condition",item.getCondition());
+            }
+            // Online owners retain native fields; neither path supplies personal age rows.
+            if(container.getItemWithID(id)!=null&&!corrected)return false;
+            applyStats(packet,item);
+            if(container.getSquare()!=null)((INetworkPacket)packet).sendToRelativeClients(PacketTypes.PacketType.ItemStats,corrected?null:connection,container.getSquare().getX(),container.getSquare().getY());
+            return true;
+        }
         boolean corrected=ConditionProtection.reject(item,(int)Access.get(packet,"condition"));
         if(corrected)Access.set(packet,"condition",item.getCondition());
         if(item instanceof Food f){
@@ -156,7 +171,7 @@ public final class Wire {
         // Removing just this prefix lets deferred work rotate behind other pending items.
         Map<Object,List<Food>> groups=new LinkedHashMap<>();
         var it=FoodAuthority.dirty.entrySet().iterator();int remaining=packetBudget*rowBudget;
-        while(it.hasNext()&&remaining-->0){Food f=it.next().getValue().get();it.remove();if(f==null)continue;
+        while(it.hasNext()&&remaining-->0){Food f=it.next().getValue().get();it.remove();if(f==null||FoodAuthority.personal(f))continue;
             ItemContainer root=FoodAuthority.root(f.getContainer());
             groups.computeIfAbsent(root==null?f:root,k->new ArrayList<>()).add(f);
         }
@@ -169,22 +184,13 @@ public final class Wire {
                 ItemContainer root=group.getKey() instanceof ItemContainer c?c:null;Food primary=foods.get(0);
                 if(GameServer.udpEngine==null)continue;
                 List<UdpConnection> recipients=new ArrayList<>();
-                if(root!=null&&root.getParent() instanceof IsoPlayer player){
-                    if(player.square==null||GameServer.IDToPlayerMap.get(player.getOnlineID())!=player)continue;
-                    UdpConnection connection=GameServer.getConnectionFromPlayer(player);
-                    if(connection==null||!connection.isFullyConnected()||!connection.havePlayer(player))continue;
-                    recipients.add(connection);attempted++;
-                }else{
-                    IsoGridSquare square=square(root,primary);if(square==null)continue;
-                    // Recipient searches also consume the dispatch budget when nobody observes.
-                    attempted++;
-                    for(UdpConnection connection:GameServer.udpEngine.connections)
-                        if(connection.isFullyConnected()&&connection.isRelevantTo(square.getX(),square.getY()))recipients.add(connection);
-                    // No observer needs an incremental update. A later full item load supplies
-                    // the baseline. Retire this work without claiming that it was published.
-                    if(recipients.isEmpty()){complete=true;continue;}
-                    if(root==null)root=new ItemContainer("floor",square,null);
-                }
+                IsoGridSquare square=square(root,primary);if(square==null)continue;
+                // World-storage recipients only; personal inventories never enter this queue.
+                attempted++;
+                for(UdpConnection connection:GameServer.udpEngine.connections)
+                    if(connection.isFullyConnected()&&connection.isRelevantTo(square.getX(),square.getY()))recipients.add(connection);
+                if(recipients.isEmpty()){complete=true;continue;}
+                if(root==null)root=new ItemContainer("floor",square,null);
                 List<Row> rows=new ArrayList<>(foods.size());
                 for(Food f:foods){FoodAuthority.settle(f);rows.add(new Row(f.getID(),FoodAuthority.snapshot(f)));}
                 sending.set(rows);

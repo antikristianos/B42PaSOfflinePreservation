@@ -40,27 +40,27 @@ public final class Patches {
     @Patch(className="zombie.iso.objects.IsoGenerator",methodName="setActivated",warmUp=true,strictMatch=true)
     public static final class GeneratorActivation {@Patch.OnEnter(skipOn=true) public static boolean enter(@Patch.This zombie.iso.objects.IsoGenerator generator,@Patch.Argument(0) boolean active){return GeneratorProtection.beforeActivation(generator,active);}}
     @Patch(className="zombie.iso.objects.IsoGenerator",methodName="syncIsoObjectReceive",warmUp=true,strictMatch=true)
-    public static final class GeneratorReceive {@Patch.OnExit public static void exit(@Patch.This zombie.iso.objects.IsoGenerator generator,@Patch.Argument(0) ByteBufferReader buffer){GeneratorProtection.received(generator);}}
+    public static final class GeneratorReceive {@Patch.OnExit public static void exit(@Patch.This zombie.iso.objects.IsoGenerator generator,@Patch.Argument(0) ByteBufferReader buffer,@Patch.Argument(1) UdpConnection connection){GeneratorProtection.received(generator);}}
     @Patch(className="zombie.inventory.types.Food",methodName="updateAge",warmUp=true,strictMatch=true)
     public static final class Age {
-        @Patch.OnEnter(skipOn=true) public static boolean enter(@Patch.This Food food,@Patch.Argument(value=0,readOnly=false) boolean send,@Patch.Local("skip") boolean skip){if(FoodAuthority.server())send=false;skip=FoodAuthority.beforeAge(food);return skip;}
+        @Patch.OnEnter(skipOn=true) public static boolean enter(@Patch.This Food food,@Patch.Argument(value=0,readOnly=false) boolean send,@Patch.Local("skip") boolean skip){if(FoodAuthority.server()&&!FoodAuthority.personal(food))send=false;skip=FoodAuthority.beforeAge(food);return skip;}
         @Patch.OnExit public static void exit(@Patch.This Food food,@Patch.Argument(0) boolean send,@Patch.Local("skip") boolean skip){FoodAuthority.afterAge(food,skip);}
     }
     @Patch(className="zombie.inventory.types.Food",methodName="updateAge",warmUp=true,strictMatch=true)
     public static final class ClientAge {
-        @Patch.OnEnter(skipOn=true) public static boolean enter(@Patch.This Food food){if(!FoodAuthority.client())return false;Access.freezingOnly(food,FoodAuthority.now());FoodAuthority.clientCalls++;return true;}
+        @Patch.OnEnter(skipOn=true) public static boolean enter(@Patch.This Food food){if(!FoodAuthority.client()||FoodAuthority.personal(food))return false;Access.freezingOnly(food,FoodAuthority.now());FoodAuthority.clientCalls++;return true;}
     }
     @Patch(className="zombie.inventory.types.Food",methodName="setAutoAge",warmUp=true,strictMatch=true)
     public static final class ClientAutoAge {
-        @Patch.OnEnter(skipOn=true) public static boolean enter(){return FoodAuthority.client();}
+        @Patch.OnEnter(skipOn=true) public static boolean enter(@Patch.This Food food){return FoodAuthority.client()&&!FoodAuthority.personal(food);}
     }
     @Patch(className="zombie.inventory.InventoryItem",methodName="setAge",warmUp=true,strictMatch=true)
     public static final class ClientSetAge {
-        @Patch.OnEnter(skipOn=true) public static boolean enter(@Patch.This InventoryItem item,@Patch.Argument(0) float value){return item instanceof Food&&FoodAuthority.rejectClientAge();}
+        @Patch.OnEnter(skipOn=true) public static boolean enter(@Patch.This InventoryItem item,@Patch.Argument(0) float value){return item instanceof Food&&FoodAuthority.rejectClientAge(item);}
     }
     @Patch(className="zombie.inventory.InventoryItem",methodName="setLastAged",warmUp=true,strictMatch=true)
     public static final class ClientSetLast {
-        @Patch.OnEnter(skipOn=true) public static boolean enter(@Patch.This InventoryItem item,@Patch.Argument(0) float value){return item instanceof Food&&FoodAuthority.rejectClientAge();}
+        @Patch.OnEnter(skipOn=true) public static boolean enter(@Patch.This InventoryItem item,@Patch.Argument(0) float value){return item instanceof Food&&FoodAuthority.rejectClientAge(item);}
     }
     @Patch(className="zombie.inventory.types.Food",methodName="save",warmUp=true,strictMatch=true)
     public static final class FoodSave {
@@ -179,7 +179,7 @@ public final class Patches {
     @Patch(className="zombie.vehicles.BaseVehicle",methodName="update",warmUp=true,strictMatch=true)
     public static final class Vehicle {@Patch.OnExit public static void exit(@Patch.This BaseVehicle vehicle){FoodAuthority.vehicleMoved(vehicle);}}
     @Patch(className="zombie.characters.IsoGameCharacter",methodName="Eat",warmUp=true)
-    public static final class Eat {@Patch.OnEnter public static void enter(@Patch.Argument(0) InventoryItem item){if(FoodAuthority.server()&&item instanceof Food food)FoodAuthority.settle(food);}}
+    public static final class Eat {@Patch.OnEnter public static void enter(@Patch.Argument(0) InventoryItem item){if(FoodAuthority.server()&&item instanceof Food food&&!FoodAuthority.personal(food))FoodAuthority.settle(food);}}
     @Patch(className="zombie.network.packets.ItemStatsPacket",methodName="setData",warmUp=true,strictMatch=true)
     public static final class StatsSet {
         @Patch.OnEnter public static void enter(@Patch.Argument(0) Object[] args){Wire.prepare(args);}
@@ -200,21 +200,12 @@ public final class Patches {
     }
     @Patch(className="zombie.network.packets.connection.LoadPlayerProfilePacket",methodName="parse",warmUp=true,strictMatch=true)
     public static final class ProfileParse {@Patch.OnExit public static void exit(@Patch.Argument(0) ByteBufferReader b,@Patch.Argument(1) IConnection c){Profiles.parse(b,c);}}
-    @Patch(className="zombie.savefile.ServerPlayerDB",methodName="serverUpdateNetworkCharacter",warmUp=true,strictMatch=true)
-    public static final class ClientProfileSave {
-        @Patch.OnEnter(skipOn=true) public static boolean enter(@Patch.This zombie.savefile.ServerPlayerDB db,@Patch.Argument(0) ByteBuffer b,@Patch.Argument(1) UdpConnection connection){
-            if(!FoodAuthority.activeServer()||connection==null||!b.hasRemaining())return false;
-            int index=b.get(b.position());if(index<0||index>=connection.players.length)return true;
-            IsoPlayer player=connection.players[index];if(player==null)return false;
-            db.serverUpdateNetworkCharacter(player,index,connection);return true;
-        }
-    }
     @Patch(className="zombie.inventory.types.Food",methodName="copyAgeFrom",warmUp=true,strictMatch=true)
-    public static final class ClientCopyAge {@Patch.OnEnter(skipOn=true) public static boolean enter(@Patch.Argument(0) Food source){return FoodAuthority.client();}}
+    public static final class ClientCopyAge {@Patch.OnEnter(skipOn=true) public static boolean enter(@Patch.This Food food,@Patch.Argument(0) Food source){return FoodAuthority.client()&&!FoodAuthority.personal(food);}}
     @Patch(className="zombie.inventory.types.Food",methodName="inheritFoodAgeFrom",warmUp=true,strictMatch=true)
-    public static final class ClientInheritAge {@Patch.OnEnter(skipOn=true) public static boolean enter(@Patch.Argument(0) InventoryItem source){return FoodAuthority.client();}}
+    public static final class ClientInheritAge {@Patch.OnEnter(skipOn=true) public static boolean enter(@Patch.This Food food,@Patch.Argument(0) InventoryItem source){return FoodAuthority.client()&&!FoodAuthority.personal(food);}}
     @Patch(className="zombie.inventory.types.Food",methodName="inheritOlderFoodAge",warmUp=true,strictMatch=true)
-    public static final class ClientOlderAge {@Patch.OnEnter(skipOn=true) public static boolean enter(@Patch.Argument(0) InventoryItem source){return FoodAuthority.client();}}
+    public static final class ClientOlderAge {@Patch.OnEnter(skipOn=true) public static boolean enter(@Patch.This Food food,@Patch.Argument(0) InventoryItem source){return FoodAuthority.client()&&!FoodAuthority.personal(food);}}
     @Patch(className="zombie.Lua.LuaEventManager",methodName="triggerEvent",warmUp=true)
     public static final class ProfileEvents {
         @Patch.OnEnter(skipOn=true) public static boolean enter(@Patch.Argument(0) String event){

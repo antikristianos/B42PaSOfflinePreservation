@@ -21,19 +21,16 @@ import zombie.vehicles.BaseVehicle;
 
 /** All policy and elapsed-time computation lives here on the server. */
 public final class FoodAuthority {
-    public static final String VERSION="1.5", KEY="OfflineFoodPreservation", STAMP="OFP2";
-    public static final int PROTOCOL=2;
+    public static final String VERSION="1.6", KEY="OfflineFoodPreservation", STAMP="OFP2";
+    public static final int PROTOCOL=3;
     public static final float AGE_STEP=1f/60f, PUBLISH_STEP=5f/60f;
     static final HouseClocks houses=new HouseClocks();
     static final WeakHashMap<Food,State> states=new WeakHashMap<>();
     static final Map<Integer,FoodRef> items=new HashMap<>();
     static final ReferenceQueue<Food> collected=new ReferenceQueue<>();
-    static final PriorityQueue<Due> due=new PriorityQueue<>(Comparator.comparingDouble(d->d.at));
     static final LinkedHashMap<Integer,FoodRef> dirty=new LinkedHashMap<>();
-    static final WeakHashMap<IsoPlayer,Boolean> connected=new WeakHashMap<>();
     static final WeakHashMap<BaseVehicle,int[]> vehicles=new WeakHashMap<>();
     static final ThreadLocal<int[]> positionOverride=new ThreadLocal<>();
-    static final ThreadLocal<Double> personalPause=ThreadLocal.withInitial(()->Double.NaN);
     static final ThreadLocal<Integer> loading=ThreadLocal.withInitial(()->0), forcing=ThreadLocal.withInitial(()->0), applying=ThreadLocal.withInitial(()->0);
     static final ThreadLocal<Integer> profile=ThreadLocal.withInitial(()->0);
     static long epoch=System.currentTimeMillis(), nextPulse;
@@ -46,17 +43,13 @@ public final class FoodAuthority {
         FoodRef(Food food){super(food,collected);id=food.getID();}
     }
     static final class State {
-        long revision=1, dueToken;
+        long revision=1;
         float age,last,publishedAge=Float.NaN,publishedAt=Float.NEGATIVE_INFINITY;
         int x=Integer.MIN_VALUE,y=Integer.MIN_VALUE;
         WeakReference<ItemContainer> root;
         boolean knownLocation,transferred,partialPause,terminal;
-        float beforePartial,partialFrom; double partialSince; int partialX,partialY;
+        float beforePartial,partialFrom; int partialX,partialY;
         State(Food f){age=f.getAge();last=f.getLastAged();terminal=f.isRotten();}
-    }
-    static final class Due {
-        final FoodRef ref; final double at; final long token;
-        Due(Food f,double at,long token){ref=new FoodRef(f);this.at=at;this.token=token;}
     }
     public record Snapshot(long epoch,long revision,float age,float last) {
         boolean valid(){return epoch>0&&revision>0&&Float.isFinite(age)&&Float.isFinite(last)&&age>=0;}
@@ -67,18 +60,20 @@ public final class FoodAuthority {
     public static boolean client(){return supported&&GameClient.client;}
     public static float now(){return (float)GameTime.getInstance().getWorldAgeHours();}
     static State state(Food f){return states.computeIfAbsent(f,State::new);}
-    static void register(Food f){if(profile.get()>0)return;if(client()){ClientItems.register(f);return;}FoodRef ref=items.get(f.getID());if(ref==null||ref.get()!=f)items.put(f.getID(),new FoodRef(f));}
+    static void register(Food f){if(profile.get()>0||personal(f))return;if(client()){ClientItems.register(f);return;}FoodRef ref=items.get(f.getID());if(ref==null||ref.get()!=f)items.put(f.getID(),new FoodRef(f));}
     public static void initialize(KahluaTable data){
         if(!server())return;
         double schema=ClockHistory.number(data.rawget("schema"),1);
         if(schema!=1&&schema!=2&&schema!=3)throw new IllegalStateException("Unsupported OFP save schema "+schema);
         reset(); houses.initialize(data,now());ready=true;
-        System.out.println("[PlayerAndSavehouseOfflinePreservation] ACTIVE "+VERSION+": server food authority, offline item condition and Vanilla generator protection, protocol "+PROTOCOL);
+        System.out.println("[PlayerAndSavehouseOfflinePreservation] ACTIVE "+VERSION+": login-only personal food protection, server storage food authority, offline condition and Vanilla generator protection, protocol "+PROTOCOL);
     }
-    public static void reset(){GeneratorProtection.locations.clear();states.clear();items.clear();ClientItems.reset();dirty.clear();due.clear();vehicles.clear();connected.clear();epoch=System.currentTimeMillis();nextPulse=0;lastPulseWorld=Float.NaN;ready=false;}
+    public static void reset(){GeneratorProtection.locations.clear();states.clear();items.clear();ClientItems.reset();dirty.clear();vehicles.clear();epoch=System.currentTimeMillis();nextPulse=0;lastPulseWorld=Float.NaN;ready=false;}
     public static void observeHouse(zombie.iso.areas.SafeHouse house){if(server()&&ready)houses.observe(house,now());}
     public static void changedHouses(){if(server()&&ready)houses.refresh(now());else houses.refreshNeeded=true;}
     public static boolean beforeAge(Food food){
+        if(server()&&loading.get()>0)return true;
+        if(personal(food))return false;
         if(client()){clientCalls++;Access.freezingOnly(food,now());return true;}
         if(!server())return false;
         if(loading.get()>0)return true;
@@ -110,17 +105,16 @@ public final class FoodAuthority {
             policyX=oldX;policyY=oldY;pause=houses.pause(oldX,oldY,from,time);
         }
         if(state.root==null||state.root.get()!=root)state.root=root==null?null:new WeakReference<>(root);state.x=x;state.y=y;state.knownLocation=square!=null;
-        double since=personalPause.get();if(Double.isFinite(since))pause=Math.max(0,time-Math.max(from,since));
         if(pause>0){
             protectedCalculations++;
             if(pause>=time-from)food.setLastAged(time);
-            else{state.partialPause=true;state.beforePartial=food.getAge();state.partialFrom=from;state.partialSince=since;state.partialX=policyX;state.partialY=policyY;}
+            else{state.partialPause=true;state.beforePartial=food.getAge();state.partialFrom=from;state.partialX=policyX;state.partialY=policyY;}
         }
         ageCalculations++;
         return false;
     }
     public static void afterAge(Food food,boolean skipped){
-        if(!server()||skipped||loading.get()>0)return;
+        if(!server()||skipped||loading.get()>0||personal(food))return;
         State s=states.get(food);
         if(food.isRotten()&&(s==null||s.terminal))return;
         if(s==null)s=state(food);
@@ -141,11 +135,11 @@ public final class FoodAuthority {
     }
     static double allowedHours(State s,double from,double to){
         if(to<=from)return 0;
-        double pause=Double.isFinite(s.partialSince)?Math.max(0,to-Math.max(from,s.partialSince)):houses.pause(s.partialX,s.partialY,from,to);
+        double pause=houses.pause(s.partialX,s.partialY,from,to);
         return Math.max(0,to-from-pause);
     }
     static void changed(Food food,boolean urgent){
-        if(!food.canAge())return;
+        if(!food.canAge()||personal(food))return;
         State s=state(food);boolean alreadyRotten=s.terminal&&food.isRotten();s.terminal=food.isRotten();
         if(s.age!=food.getAge()||s.last!=food.getLastAged()){
             boolean boundary=(s.age<food.getOffAge())!=(food.getAge()<food.getOffAge())||(s.age<food.getOffAgeMax())!=(food.getAge()<food.getOffAgeMax());
@@ -173,6 +167,12 @@ public final class FoodAuthority {
         return parent==null?null:parent.getSquare();
     }
     static IsoPlayer owner(Food food){ItemContainer c=root(food.getContainer());return c!=null&&c.getParent() instanceof IsoPlayer p?p:null;}
+    public static boolean personal(InventoryItem item){return item!=null&&personal(item.getContainer());}
+    public static boolean personal(ItemContainer container){ItemContainer outer=root(container);return outer!=null&&outer.getParent() instanceof IsoPlayer;}
+    static void releasePersonal(Food food){
+        ClientItems.discard(food);items.remove(food.getID());dirty.remove(food.getID());states.remove(food);
+        if(food.hasModData())food.getModData().rawset(STAMP,null);
+    }
     static void walk(ItemContainer root,Consumer<Food> action){
         if(root==null)return;
         ArrayDeque<ItemContainer> stack=new ArrayDeque<>();Set<ItemContainer> visited=Collections.newSetFromMap(new IdentityHashMap<>());stack.push(root);
@@ -184,15 +184,18 @@ public final class FoodAuthority {
     public static void loadEnter(){loading.set(loading.get()+1);}
     public static void loadExit(){loading.set(Math.max(0,loading.get()-1));}
     public static void playerLoaded(IsoPlayer player){
-        if(!server()||!ready||player.isDead())return;
+        if((!server()&&!client())||player.isDead())return;
         Object saved=player.getModData().rawget(KEY);
         double checkpoint=saved instanceof KahluaTable table?ClockHistory.number(table.rawget("lastOnline"),Double.NaN):Double.NaN;
         float time=now();
+        double offline=Double.isFinite(checkpoint)?Math.max(0,time-checkpoint):0;
         walk(player.getInventory(),food->{
-            if(food.isRotten())return;
-            if(!Double.isFinite(checkpoint)||food.getLastAged()<0)food.setLastAged(time);
-            personalPause.set(checkpoint);
-            try{settle(food);}finally{personalPause.remove();}register(food);changed(food,true);
+            // Profile preparation is the login boundary. Age and the freezing clock stay intact.
+            if(server()){
+                float last=food.getLastAged();
+                food.setLastAged(!Double.isFinite(checkpoint)||!Float.isFinite(last)||last<0?time:(float)Math.min(time,last+offline));
+            }
+            releasePersonal(food);
         });
         checkpoint(player,time);
     }
@@ -201,21 +204,25 @@ public final class FoodAuthority {
         data.rawset("schema",2.0);data.rawset("lastOnline",(double)time);player.getModData().rawset(KEY,data);
     }
     public static void playerSaving(IsoPlayer player){
-        if(!server()||!ready||loading.get()>0||player.isDead())return;
-        walk(player.getInventory(),FoodAuthority::settle);checkpoint(player,now());
+        if((!server()&&!client())||loading.get()>0||player.isDead())return;
+        if(server()&&profile.get()==0&&GameServer.IDToPlayerMap.get(player.getOnlineID())!=player)return;
+        // Persist the native end-of-online state, including food in closed nested bags.
+        // Preparing an already corrected login profile must not settle/advance its contents.
+        if(profile.get()==0)walk(player.getInventory(),food->{food.updateAge(false);releasePersonal(food);});
+        checkpoint(player,now());
     }
     public static void playerConnected(){
         if(!server()||!ready)return;
         changedHouses();
-        for(IsoPlayer p:GameServer.IDToPlayerMap.values())if(p!=null&&!p.isDead()&&connected.put(p,true)==null)walk(p.getInventory(),food->{register(food);schedule(food);changed(food,true);});
-    }
-    static void schedule(Food food){
-        if(!server()||profile.get()>0||!food.canAge()||food.isRotten())return;
-        IsoPlayer player=owner(food);if(player==null||player.isDead()||GameServer.IDToPlayerMap.get(player.getOnlineID())!=player)return;
-        State s=state(food);if(s.dueToken!=0)return;
-        s.dueToken=1;due.add(new Due(food,now()+AGE_STEP,1));
     }
     public static boolean beforeMove(InventoryItem item,ItemContainer target){
+        if(personal(item)){
+            if(server()&&ready&&loading.get()==0&&item.getContainer()!=target&&!personal(target)){
+                if(item instanceof Food food)food.updateAge(false);
+                else if(item instanceof InventoryContainer bag)walk(bag.getInventory(),food->food.updateAge(false));
+            }
+            return false;
+        }
         if(!server()||!ready||loading.get()>0||item.getContainer()==target)return false;
         if(item.getContainer()==null&&item.getWorldItem()==null){
             if(item instanceof Food f){if(!state(f).transferred)return false;}
@@ -229,15 +236,16 @@ public final class FoodAuthority {
     public static void afterMove(InventoryItem item,boolean settled){
         if(loading.get()>0)return;
         Consumer<Food> update=f->{
+            if(personal(f)){releasePersonal(f);return;}
             if(!client())register(f);
-            if(server()&&ready){State s=state(f);if(settled||s.transferred)f.setLastAged(now());if(item.getContainer()!=null||item.getWorldItem()!=null)s.transferred=false;s.knownLocation=false;s.root=null;changed(f,true);schedule(f);}
+            if(server()&&ready){State s=state(f);if(settled||s.transferred)f.setLastAged(now());if(item.getContainer()!=null||item.getWorldItem()!=null)s.transferred=false;s.knownLocation=false;s.root=null;changed(f,true);}
             else if(client())ClientItems.moved(f);
         };
         if(item instanceof Food f)update.accept(f);else if(item instanceof InventoryContainer bag)walk(bag.getInventory(),update);
     }
     public static void containerLoaded(ItemContainer container){
         if(loading.get()>0)return;
-        walk(container,f->{register(f);if(client())applyPending(f);else if(server())schedule(f);});
+        walk(container,f->{if(personal(f)){releasePersonal(f);return;}register(f);if(client())applyPending(f);});
     }
     public static void vehicleMoved(BaseVehicle vehicle){
         if(!server()||!ready)return;
@@ -252,6 +260,7 @@ public final class FoodAuthority {
         old[0]=x;old[1]=y;
     }
     public static void fullSave(Food food){
+        if(personal(food))return;
         if(!server()||!ready||loading.get()>0)return;
         if(food.getContainer()!=null||food.getWorldItem()!=null)settle(food);
         changed(food,false);State s=state(food);
@@ -259,6 +268,7 @@ public final class FoodAuthority {
         food.getModData().rawset(STAMP,stamp);
     }
     public static void fullLoad(Food food){
+        if(loading.get()>0)return;
         if(server()){
             Object stamp=food.getModData().rawget(STAMP);
             if(stamp instanceof KahluaTable table&&(long)ClockHistory.number(table.rawget("epoch"),0)==epoch)
@@ -267,8 +277,12 @@ public final class FoodAuthority {
             if(loading.get()==0&&original!=null&&original!=food){settle(original);food.setAge(original.getAge());food.setLastAged(original.getLastAged());state(food).revision=state(original).revision;state(food).age=food.getAge();state(food).last=food.getLastAged();}
             if(profile.get()==0&&loading.get()==0)register(food);
         } else if(client()){
-            register(food);Object raw=food.getModData().rawget(STAMP);
-            if(raw instanceof KahluaTable stamp){Snapshot row=new Snapshot((long)ClockHistory.number(stamp.rawget("epoch"),0),(long)ClockHistory.number(stamp.rawget("revision"),0),food.getAge(),food.getLastAged());receive(food.getID(),row,food);}
+            Object raw=food.getModData().rawget(STAMP);
+            // Personal full-item data has no storage-authority stamp. Do not replay a late
+            // storage snapshot while its container/owner is still being deserialized.
+            if(!(raw instanceof KahluaTable stamp)){ClientItems.discard(food);return;}
+            register(food);
+            Snapshot row=new Snapshot((long)ClockHistory.number(stamp.rawget("epoch"),0),(long)ClockHistory.number(stamp.rawget("revision"),0),food.getAge(),food.getLastAged());receive(food.getID(),row,food);
             applyPending(food);
         }
     }
@@ -276,25 +290,20 @@ public final class FoodAuthority {
     static void receive(int id,Snapshot row,Food food){ClientItems.receive(id,row,food);}
     static void applyPending(Food food){ClientItems.applyPending(food);}
     static void apply(Food food,Snapshot row){
+        if(personal(food))return;
         ClientItems.stamp(food,row);
         boolean boundary=(food.getAge()<food.getOffAge())!=(row.age()<food.getOffAge())||(food.getAge()<food.getOffAgeMax())!=(row.age()<food.getOffAgeMax());
         applying.set(applying.get()+1);try{food.setAge(row.age());food.setLastAged(row.last());}finally{applying.set(applying.get()-1);}
         ItemContainer c=food.getContainer();if(c!=null)c.setDrawDirty(true);
         if(boundary)zombie.Lua.LuaEventManager.triggerEvent("OnContainerUpdate",food);
     }
-    public static boolean rejectClientAge(){return client()&&applying.get()==0&&loading.get()==0;}
+    public static boolean rejectClientAge(InventoryItem item){return client()&&!personal(item)&&applying.get()==0&&loading.get()==0;}
     public static void pulse(){
         if(!server()||!ready)return;
         long tick=System.nanoTime();if(tick<nextPulse)return;nextPulse=tick+250_000_000L;
-        if(Float.isFinite(lastPulseWorld)&&now()<lastPulseWorld){houses.refresh(now());due.clear();for(State s:states.values())s.dueToken=0;connected.clear();playerConnected();}
+        if(Float.isFinite(lastPulseWorld)&&now()<lastPulseWorld)houses.refresh(now());
         lastPulseWorld=now();
         for(int n=0;n<256;n++){FoodRef ref=(FoodRef)collected.poll();if(ref==null)break;items.remove(ref.id,ref);}
-        int budget=128;float time=now();
-        while(budget-->0&&!due.isEmpty()&&due.peek().at<=time){
-            Due job=due.remove();Food f=job.ref.get();if(f==null)continue;State s=states.get(f);if(s==null)continue;s.dueToken=0;
-            IsoPlayer p=owner(f);if(p==null||p.isDead()||GameServer.IDToPlayerMap.get(p.getOnlineID())!=p)continue;
-            settle(f);schedule(f);
-        }
         Wire.flush(8,64);
     }
     public static String metrics(){return "ageCalls="+ageCalls+" calculations="+ageCalculations+" protected="+protectedCalculations+" clientSuppressions="+clientCalls+" packets="+packets+" rows="+rows+" extensionBytes="+extensionBytes+" pending="+dirty.size()+" conditionBlocks="+ConditionProtection.prevented+" generatorEvaluations="+GeneratorProtection.evaluations+" generatorStops="+GeneratorProtection.stops+" generatorStarts="+GeneratorProtection.starts+" generatorAssociations="+GeneratorProtection.associations;}
