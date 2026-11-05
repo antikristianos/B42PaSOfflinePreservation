@@ -457,8 +457,8 @@
   "Dependencies": [
     {
       "Path": "projectzomboid.jar",
-      "Size": 66254409,
-      "Sha256": "90C54B84EBC160AE053CBEFE30C7713826CA4FDB4934FDE53C9EBDE0FF9892F3"
+      "Size": 68816080,
+      "Sha256": "531DAAD77C92DCB93534E66FF37BECF86DC119F55C62345C622C52021170723E"
     },
     {
       "Path": "ZombieBuddy.jar",

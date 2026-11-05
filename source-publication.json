@@ -3,12 +3,12 @@
   "Project": "B42PaSOfflinePreservation",
   "Repository": "antikristianos/B42PaSOfflinePreservation",
   "Branch": "wip",
-  "Tag": "wip-1.80",
+  "Tag": "wip-1.81",
   "ModVersion": "1.6",
-  "CollectionVersion": "1.80",
+  "CollectionVersion": "1.81",
   "WorkshopId": 3802764936,
   "WorkshopUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3802764936",
-  "UploadManifestSha256": "C40AF9B59B6D599DBF4132FD357BA4C7187FF9922DADECF261FA4A433C859349",
+  "UploadManifestSha256": "7737F5DA54B12FFEB0391A45B0792D1920123C2905FBB6D421BE5D88F9E7CCA3",
   "Artifact": {
     "Path": "mods/B42PaSOfflinePreservation_WIP/42.22/media/java/PlayerAndSavehouseOfflinePreservation.jar",
     "Size": 118304,
@@ -33,7 +33,7 @@
     {
       "Path": "build.json",
       "Size": 18721,
-      "Sha256": "61F152AD85E3CA6F19BB1239674D57BB8E52469DC97687408E5CCE63C5DA84D1"
+      "Sha256": "476BCB3B911E5BACB228F128E7B0BFDD14ACDAF4ECA192079FE22EDABEAD9268"
     },
     {
       "Path": "build.ps1",
